@@ -12,7 +12,7 @@ module Outboxable
           specversion: '1.0',
           type: resource.routing_key,
           datacontenttype: 'application/json',
-          data: @resource.payload
+          data: resource.payload
         }.to_json
       end
     end
