@@ -9,7 +9,7 @@ Please take into consideration that this Gem is **opinionated**, meaning it expe
 1. When using RabbitMQ, it only publishes events to a ***topic*** exchange. 
 1. It assumes that you are using routing keys to publish to the topic exchange.
 1. It publishes events in a background job using [Sidekiq](https://github.com/sidekiq/sidekiq). Therefore, you application must use Sidekiq.
-1. It implements the [polling publisher pattern](https://microservices.io/patterns/data/polling-publisher.html). For that, it uses [](https://github.com/sidekiq-cron/sidekiq-cron) to check the unpublished outboxes every 5 seconds after the initialization of the application.
+1. It implements the [polling publisher pattern](https://microservices.io/patterns/data/polling-publisher.html). For that, it uses [sidekiq-cron](https://github.com/sidekiq-cron/sidekiq-cron) to check the unpublished outboxes every 5 seconds after the initialization of the application.
 
 ## Installation
 
