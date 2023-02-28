@@ -91,8 +91,8 @@ The Outboxable Gem provides a general-purpose polymorphic model for creating out
 ```ruby
 ActiveRecord::Base.transaction do
   book = Book.find(1)
-  book.update(title: 'Patterns of Enterprise Application Architecture', author: 'Martin Fowler')
-  Outbox.create(
+  book.update!(title: 'Patterns of Enterprise Application Architecture', author: 'Martin Fowler')
+  Outbox.create!(
     routing_key: 'books.updated',
     exchange: 'YOUR RABBITMQ EXCHANGE',
     payload: book.as_json,
