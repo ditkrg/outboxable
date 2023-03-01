@@ -6,7 +6,7 @@ module Outboxable
 
     # Copy initializer into user app
     def copy_initializer
-      copy_file('initializer.rb', 'config/initializers/outboxable.rb')
+      copy_file('initializer.rb', 'config/initializers/z_outboxable.rb')
     end
 
     # Copy user information (model & Migrations) into user app
