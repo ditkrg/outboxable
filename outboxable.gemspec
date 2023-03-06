@@ -10,15 +10,15 @@ Gem::Specification.new do |spec|
 
   spec.summary = "An opiniated Gem for Rails applications to implement the transactional outbox pattern."
   spec.description = "The Outboxable Gem is tailored for Rails applications to implement the transactional outbox pattern. It currently only supports ActiveRecord."
-  spec.homepage = "https://githuh.com/broosk1993/outboxable"
+  spec.homepage = "https://github.com/broosk1993/outboxable"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
   spec.metadata['allowed_push_host'] = 'https://rubygems.org'
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://githuh.com/broosk1993/outboxable"
-  spec.metadata["changelog_uri"] = "https://githuh.com/broosk1993/outboxable/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/broosk1993/outboxable"
+  spec.metadata["changelog_uri"] = "https://github.com/broosk1993/outboxable/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
