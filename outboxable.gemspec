@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = 'The Outboxable Gem is tailored for Rails applications to implement the transactional outbox pattern. It currently only supports ActiveRecord.'
   spec.homepage = 'https://github.com/broosk1993/outboxable'
   spec.license = 'MIT'
-  spec.required_ruby_version = '>= 2.6.0'
+  spec.required_ruby_version = '>= 3.0.0'
 
   spec.metadata['allowed_push_host'] = 'https://rubygems.org'
 
