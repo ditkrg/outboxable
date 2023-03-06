@@ -10,3 +10,7 @@ gem "rake", "~> 13.0"
 gem "rspec", "~> 3.0"
 
 gem "rubocop", "~> 1.21"
+
+gem 'sidekiq-cron', '~> 1.9'
+
+gem 'activesupport', '~> 7.0.4.2'
