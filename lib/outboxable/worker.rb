@@ -1,5 +1,3 @@
-require 'sidekiq'
-
 module Outboxable
   class Worker
     include Sidekiq::Job

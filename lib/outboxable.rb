@@ -8,7 +8,6 @@ require 'outboxable/polling_publisher_worker'
 require 'outboxable/connection'
 require 'outboxable/configuration'
 require 'outboxable/rabbitmq/publisher'
-require 'active_support'
 
 module Outboxable
   class Error < StandardError; end
