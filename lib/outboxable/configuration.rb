@@ -12,7 +12,7 @@ module Outboxable
     ALLOWED_MESSAGE_BROKERS = %i[rabbitmq].freeze
     ALLOWED_ORMS = %i[activerecord].freeze
 
-    attr_accessor :rabbitmq_host, 
+    attr_accessor :rabbitmq_host,
                   :rabbitmq_port,
                   :rabbitmq_user,
                   :rabbitmq_password,
@@ -31,7 +31,7 @@ module Outboxable
       Sidekiq::Options[:cron_poll_interval] = 5
 
       # Create the cron job for the polling publisher
-      Sidekiq::Cron::Job.create(name: 'OutboxablePollingPublisher', cron: '*/5 * * * * *', class: 'Outboxable::PollingPublisherWorker') 
+      Sidekiq::Cron::Job.create(name: 'OutboxablePollingPublisher', cron: '*/5 * * * * *', class: 'Outboxable::PollingPublisherWorker')
     end
 
     def message_broker=(message_broker)
