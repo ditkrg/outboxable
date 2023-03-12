@@ -7,11 +7,11 @@ module Outboxable
 
     def initialize
       @connection = Bunny.new(
-        host: RabbitCarrots.configuration.rabbitmq_host,
-        port: RabbitCarrots.configuration.rabbitmq_port,
-        user: RabbitCarrots.configuration.rabbitmq_user,
-        password: RabbitCarrots.configuration.rabbitmq_password,
-        vhost: RabbitCarrots.configuration.rabbitmq_vhost
+        host: Outboxable.configuration.rabbitmq_host,
+        port: Outboxable.configuration.rabbitmq_port,
+        user: Outboxable.configuration.rabbitmq_user,
+        password: Outboxable.configuration.rabbitmq_password,
+        vhost: Outboxable.configuration.rabbitmq_vhost
       )
 
       @connection.start
