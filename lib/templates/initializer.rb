@@ -29,7 +29,7 @@ Outboxable.configure do |config|
   # RabbitMQ configurations
   config.rabbitmq_host = ENV.fetch('RABBITMQ__HOST')
   config.rabbitmq_port = ENV.fetch('RABBITMQ__PORT', 5672)
-  config.rabbitmq_user = ENV.fetch('RABBITMQ__USER')
+  config.rabbitmq_user = ENV.fetch('RABBITMQ__USERNAME')
   config.rabbitmq_password = ENV.fetch('RABBITMQ__PASSWORD')
   config.rabbitmq_vhost = ENV.fetch('RABBITMQ__VHOST')
   config.rabbitmq_event_bus_exchange = ENV.fetch('EVENTBUS__EXCHANGE_NAME')
