@@ -6,13 +6,11 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'rake', '~> 13.0'
-
 gem 'rspec', '~> 3.0'
-
 gem 'rubocop-rails', '~> 2.18'
 
 group :development, :test do
   gem 'activesupport', '~> 7.0'
-  gem 'sidekiq', '~> 7.0', require: true
+  gem 'sidekiq', '~> 7.0'
   gem 'sidekiq-cron', '~> 1.10'
 end
