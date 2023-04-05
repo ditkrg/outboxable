@@ -9,6 +9,7 @@ require 'outboxable/connection'
 require 'outboxable/configuration'
 require 'outboxable/rabbitmq/publisher'
 
+require 'active_support/concern'
 
 module Outboxable
   class Error < StandardError; end
