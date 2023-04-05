@@ -2,9 +2,9 @@ class Outbox < ApplicationRecord
   attribute :allow_publish, :boolean, default: true
 
   # Callbacks
-  after_commit :publish, if: :allow_publish?
+  before_create :set_last_attempted_at
   before_save :check_publishing
-
+  after_commit :publish, if: :allow_publish?
   # Enums
   enum status: { pending: 0, published: 1, failed: 2 }
   enum size: { single: 0, batch: 1 }
@@ -17,8 +17,7 @@ class Outbox < ApplicationRecord
   # Associations
   belongs_to :outboxable, polymorphic: true, optional: true
 
-  def increment_attempt
-    self.attempts = attempts + 1
+  def set_last_attempted_at
     self.last_attempted_at = Time.zone.now
   end
 
