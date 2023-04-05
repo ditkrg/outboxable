@@ -12,8 +12,7 @@ gem 'rspec', '~> 3.0'
 gem 'rubocop-rails', '~> 2.18'
 
 group :development, :test do
-  gem "sidekiq", "~> 7.0", require: true
-  gem "sidekiq-cron", "~> 1.10"
-  gem "activesupport", "~> 7.0"
+  gem 'activesupport', '~> 7.0'
+  gem 'sidekiq', '~> 7.0', require: true
+  gem 'sidekiq-cron', '~> 1.10'
 end
-
