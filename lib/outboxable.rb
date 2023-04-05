@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "outboxable/version"
+require_relative 'outboxable/version'
 
 require 'outboxable/worker'
 require 'outboxable/publishing_manager'
@@ -13,7 +13,7 @@ require 'active_support/concern'
 
 module Outboxable
   class Error < StandardError; end
-  
+
   extend ActiveSupport::Concern
 
   included do
@@ -22,7 +22,7 @@ module Outboxable
 
     has_many :outboxes, as: :outboxable, autosave: false
 
-    def instantiate_outbox(routing_key: )
+    def instantiate_outbox(routing_key:)
       outboxes.new(
         routing_key:,
         exchange: Outboxable.configuration.rabbitmq_event_bus_exchange,

@@ -6,7 +6,7 @@ Please take into consideration that this Gem is **opinionated**, meaning it expe
 
 ### Restrictions
 
-1. When using RabbitMQ, it only publishes events to a ***topic*** exchange. 
+1. When using RabbitMQ, it only publishes events to a ***topic*** exchange.
 1. It assumes that you are using routing keys to publish to the topic exchange.
 1. It publishes events in a background job using [Sidekiq](https://github.com/sidekiq/sidekiq). Therefore, you application must use Sidekiq.
 1. It implements the [polling publisher pattern](https://microservices.io/patterns/data/polling-publisher.html). For that, it uses [sidekiq-cron](https://github.com/sidekiq-cron/sidekiq-cron) to check the unpublished outboxes every 5 seconds after the initialization of the application.
@@ -25,7 +25,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 $ gem install outboxable
 ```
 
-Then run: 
+Then run:
 
 ```shell
 $ rails g outboxable:install
@@ -42,7 +42,7 @@ $ rails db:migrate
 The installation command above will also add a configuration file to your initializer:
 
 ```ruby
-# This monkey patch allows you to customize the message format that you publish to your broker. 
+# This monkey patch allows you to customize the message format that you publish to your broker.
 # By default, Outboxable publishes a CloudEvent message to your broker.
 module Outboxable
   module RabbitMq
@@ -73,14 +73,14 @@ Outboxable.configure do |config|
   # RabbitMQ configurations
   config.rabbitmq_host = ENV.fetch('RABBITMQ__HOST')
   config.rabbitmq_port = ENV.fetch('RABBITMQ__PORT', 5672)
-  config.rabbitmq_user = ENV.fetch('RABBITMQ__USER')
+  config.rabbitmq_user = ENV.fetch('RABBITMQ__USERNAME')
   config.rabbitmq_password = ENV.fetch('RABBITMQ__PASSWORD')
   config.rabbitmq_vhost = ENV.fetch('RABBITMQ__VHOST')
   config.rabbitmq_event_bus_exchange = ENV.fetch('EVENTBUS__EXCHANGE_NAME')
 end
 ```
 
-The monkey patch in the code above is crucial in giving you a way to customize the format of the message that you will publish to the message broker. Be default, it follows the specs of the [Cloud Native Events Specifications v1.0.2](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md). 
+The monkey patch in the code above is crucial in giving you a way to customize the format of the message that you will publish to the message broker. Be default, it follows the specs of the [Cloud Native Events Specifications v1.0.2](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md).
 
 
 
@@ -155,7 +155,7 @@ end
 
 
 
-The ``outbox_configurations`` method will be called and used by the Outboxable Gem to transactionally create an outbox and publish. In the code above, it will create an outbox when the book is created. For that purpose it will use the routing key ``books.created`` as a convention. It will also publish an event if the book is updated, using the routing key: ``books.published`` since it was specified in the hash. 
+The ``outbox_configurations`` method will be called and used by the Outboxable Gem to transactionally create an outbox and publish. In the code above, it will create an outbox when the book is created. For that purpose it will use the routing key ``books.created`` as a convention. It will also publish an event if the book is updated, using the routing key: ``books.published`` since it was specified in the hash.
 
 
 
@@ -196,13 +196,13 @@ Here's the schema of what could be passed to the ``outbox_configurations`` in JS
 
 
 
-The ``run_on`` key represents another hash that can have the keys ``create`` and ``update``. If one of these keys are not supplied, the outbox will not be created for the unspecified operation; in other words, if you do not specify the configuration for ``update``, for example, an outbox will NOT be created when the book is updated. 
+The ``run_on`` key represents another hash that can have the keys ``create`` and ``update``. If one of these keys are not supplied, the outbox will not be created for the unspecified operation; in other words, if you do not specify the configuration for ``update``, for example, an outbox will NOT be created when the book is updated.
 
 Each operation key such as ``create`` and ``update`` can also take a ``condition`` key, which represents a Ruby proc that must return a boolean expression. It can also take a ``routing_key`` option, which specifies that routing key with which the outbox will publish the event to the message broker. If you don't specify the ``routing_key``, it will use the base`s routing key dotted by``created`` for create operation and ``updated`` for update operation.
 
 
 
-Last but not least, run sidekiq so that the Outboxable Gem can publish the events to the broker: 
+Last but not least, run sidekiq so that the Outboxable Gem can publish the events to the broker:
 
 ```shell
 $ bundle exec sidekiq

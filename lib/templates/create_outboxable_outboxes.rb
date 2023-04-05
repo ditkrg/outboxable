@@ -17,7 +17,7 @@ class CreateOutboxableOutboxes < ActiveRecord::Migration[7.0]
 
       t.integer :size, null: false, default: 0
 
-      t.references :outboxable, polymorphic: true, null: true 
+      t.references :outboxable, polymorphic: true, null: true
 
       t.timestamps
     end
