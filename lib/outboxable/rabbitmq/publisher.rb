@@ -29,7 +29,6 @@ module Outboxable
         return unless confirmed
 
         @resource.reload
-        @resource.increment_attempt
         @resource.update(status: :published, retry_at: nil)
       end
     end
