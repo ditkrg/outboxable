@@ -10,15 +10,13 @@ class Outbox < ApplicationRecord
   enum size: { single: 0, batch: 1 }
 
   # Validations
-  validates :payload, presence: true
-  validates :exchange, presence: true
-  validates :routing_key, presence: true
+  validates :payload, :exchange, :routing_key, presence: true
 
   # Associations
   belongs_to :outboxable, polymorphic: true, optional: true
 
   def set_last_attempted_at
-    self.last_attempted_at = Time.zone.now
+    self.last_attempted_at = 10.seconds.from_now
   end
 
   def publish
