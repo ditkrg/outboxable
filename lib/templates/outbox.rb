@@ -6,7 +6,7 @@ class Outbox < ApplicationRecord
   before_save :check_publishing
   after_commit :publish, if: :allow_publish?
   # Enums
-  enum status: { pending: 0, published: 1, failed: 2 }
+  enum status: { pending: 0, processing: 1, published: 2, failed: 3 }
   enum size: { single: 0, batch: 1 }
 
   # Validations
