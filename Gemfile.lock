@@ -4,6 +4,7 @@ PATH
     outboxable (0.1.8)
       bunny (>= 2.19.0)
       connection_pool (~> 2.3.0)
+      simple_enum (>= 2.3)
 
 GEM
   remote: https://rubygems.org/
@@ -84,6 +85,8 @@ GEM
       fugit (~> 1.8)
       globalid (>= 1.0.1)
       sidekiq (>= 6)
+    simple_enum (2.3.2)
+      activesupport (>= 4.0.0)
     sorted_set (1.0.3)
       rbtree
       set (~> 1.0)
