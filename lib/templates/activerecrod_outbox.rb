@@ -4,7 +4,7 @@ class Outbox < ApplicationRecord
   before_save :check_publishing
   # Callbacks
   before_create :set_last_attempted_at
-  after_commit :publish, if: :allow_publish?
+  after_save :publish, if: :allow_publish
   # Enums
   enum status: { pending: 0, processing: 1, published: 2, failed: 3 }
   enum size: { single: 0, batch: 1 }

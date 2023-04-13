@@ -33,7 +33,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'bunny', '>= 2.19.0'
   spec.add_dependency 'connection_pool', '~> 2.3.0'
-  spec.add_dependency 'simple_enum', '>= 2.3'
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 end

@@ -3,7 +3,7 @@ class Outbox
   include Mongoid::Timestamps
   include SimpleEnum::Mongoid
 
-  attr_accessor :allow_publish
+  attr_writer :allow_publish
 
   # Fields
   field :status, type: String, default: 'pending'
@@ -18,14 +18,19 @@ class Outbox
 
   field :retry_at, type: DateTime, default: nil
 
+  field :idempotency_key, type: String
+
   field :payload, type: Hash, default: {}
   field :headers, type: Hash, default: {}
 
+  index({ idempotency_key: 1 }, { unique: true, name: 'idempotency_key_unique_index' })
+
   before_save :check_publishing
+  before_create :set_idempotency_key
 
   # Callbacks
   before_create :set_last_attempted_at
-  after_commit :publish, if: :allow_publish?
+  after_save :publish, if: :allow_publish
 
   # Enums
   as_enum :status, { pending: 0, processing: 1, published: 2, failed: 3 }, pluralize_scopes: false, map: :string
@@ -42,8 +47,12 @@ class Outbox
   end
 
   def publish
-    Outboxable::Worker.perform_async(id)
+    Outboxable::Worker.perform_async(idempotency_key)
     update(status: :processing, last_attempted_at: 1.minute.from_now, allow_publish: false)
+  end
+
+  def set_idempotency_key
+    self.idempotency_key = SecureRandom.uuid if idempotency_key.blank?
   end
 
   def check_publishing

@@ -1,5 +1,3 @@
-require 'simple_enum/mongoid'
-
 # This monkey patch allows you to customize the message format that you publish to your broker.
 # By default, Outboxable publishes a CloudEvent message to your broker.
 module Outboxable
