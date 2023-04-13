@@ -1,13 +1,12 @@
 class Outbox
   include Mongoid::Document
   include Mongoid::Timestamps
-  include SimpleEnum::Mongoid
 
   attr_writer :allow_publish
 
   # Fields
   field :status, type: String, default: 'pending'
-  field :size, type: String, default: 'single'
+  field :size,   type: String, default: 'single'
 
   field :exchange, type: String, default: ''
   field :routing_key, type: String, default: ''
@@ -31,10 +30,6 @@ class Outbox
   # Callbacks
   before_create :set_last_attempted_at
   after_save :publish, if: :allow_publish
-
-  # Enums
-  as_enum :status, { pending: 0, processing: 1, published: 2, failed: 3 }, pluralize_scopes: false, map: :string
-  as_enum :size, { single: 0, batch: 1 }, pluralize_scopes: false, map: :string
 
   # Validations
   validates :payload, :exchange, :routing_key, presence: true
@@ -60,6 +55,17 @@ class Outbox
   end
 
   def allow_publish
-    @allow_publish || true
+    return true if @allow_publish.nil?
+
+    @allow_publish
+  end
+
+  %w[pending processing published failed].each do |status|
+    define_method "#{status}?" do
+      self.status == status
+    end
+
+    # define scope
+    scope status, -> { where(status:) }
   end
 end
