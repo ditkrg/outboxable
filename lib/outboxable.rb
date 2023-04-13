@@ -20,7 +20,7 @@ module Outboxable
     after_create :instantiate_outbox_for_create, if: proc { |object| object.check_outbox_condition(object:, operation: :create) }
     after_update :instantiate_outbox_for_update, if: proc { |object| object.check_outbox_condition(object:, operation: :update) }
 
-    has_many :outboxes, as: :outboxable, autosave: false
+    has_many :outboxes, as: :outboxable, dependent: :destroy
 
     def instantiate_outbox(routing_key:)
       outboxes.new(
