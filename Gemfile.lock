@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    outboxable (0.1.6)
+    outboxable (0.1.8)
       bunny (>= 2.19.0)
       connection_pool (~> 2.3.0)
 
