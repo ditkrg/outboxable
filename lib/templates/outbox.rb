@@ -21,6 +21,7 @@ class Outbox < ApplicationRecord
 
   def publish
     Outboxable::Worker.perform_async(id)
+    update(status: :processing, last_attempted_at: 1.minute.from_now)
   end
 
   def check_publishing
