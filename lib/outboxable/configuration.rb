@@ -10,7 +10,7 @@ module Outboxable
 
   class Configuration
     ALLOWED_MESSAGE_BROKERS = %i[rabbitmq].freeze
-    ALLOWED_ORMS = %i[activerecord].freeze
+    ALLOWED_ORMS = %i[activerecord mongoid].freeze
 
     attr_accessor :rabbitmq_host,
                   :rabbitmq_port,
