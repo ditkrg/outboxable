@@ -23,7 +23,7 @@ Outboxable.configure do |config|
   # Specify the ORM you are using. For now, only ActiveRecord is supported.
   config.orm = :mongoid
 
-  # Specify the message broker you are using. For now, only RabbitMQ is supported.
+  # Specify the ORM you are using. Supported values are :activerecord and :mongoid
   config.message_broker = :rabbitmq
 
   # RabbitMQ configurations

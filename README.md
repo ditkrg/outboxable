@@ -1,6 +1,6 @@
 # Outboxable
 
-The Outboxable Gem is tailored for Rails applications to implement the transactional outbox pattern. It currently only supports ActiveRecord.
+The Outboxable Gem is tailored for Rails applications to implement the transactional outbox pattern. It supports both ActiveRecord and Mongoid.
 
 Please take into consideration that this Gem is **opinionated**, meaning it expects you to follow a certain pattern and specific setting. If you don't like it, you can always fork it and change it.
 
@@ -25,13 +25,19 @@ If bundler is not being used to manage dependencies, install the gem by executin
 $ gem install outboxable
 ```
 
-Then run:
+For use with ActiveRecord, run:
 
 ```shell
-$ rails g outboxable:install
+$ rails g outboxable:install --orm activerecord
 ```
 
-The command above will add a migration file and the Outbox model. You will need then to run the migrations:
+For use with Mongoid, run: 
+
+```shell
+$ rails g outboxable:install --orm mongoid
+```
+
+The command above will add a migration file and the Outbox model. You will need then to run the migrations (ActiveRecord only):
 
 ```shell
 $ rails db:migrate
@@ -64,7 +70,7 @@ module Outboxable
 end
 
 Outboxable.configure do |config|
-  # Specify the ORM you are using. For now, only ActiveRecord is supported.
+  # Specify the ORM you are using. Supported values are :activerecord and :mongoid
   config.orm = :activerecord
 
   # Specify the message broker you are using. For now, only RabbitMQ is supported.
@@ -207,6 +213,12 @@ Last but not least, run sidekiq so that the Outboxable Gem can publish the event
 ```shell
 $ bundle exec sidekiq
 ```
+
+
+
+### Mongoid
+
+The Outboxable gem works smoothly with Mongoid. It is to be noted that when used with Mongoid, Outboxable does not use the `_id` as the idempotency key. It creates a field called ``idempotency_key`` which is a UUID generated at the time of the insertion of the document.
 
 ## Development
 
