@@ -3,13 +3,14 @@
 require_relative 'outboxable/version'
 
 require 'outboxable/worker'
-require 'outboxable/publishing_manager'
-require 'outboxable/polling_publisher_worker'
 require 'outboxable/connection'
 require 'outboxable/configuration'
 require 'outboxable/rabbitmq/publisher'
 
 require 'active_support/concern'
+
+require 'outboxable/publishing_manager'
+require 'outboxable/polling_publisher_worker'
 
 module Outboxable
   class Error < StandardError; end
