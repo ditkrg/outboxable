@@ -26,7 +26,7 @@ module Outboxable
     def instantiate_outbox(routing_key:)
       outboxes.new(
         routing_key:,
-        exchange: Outboxable.configuration.rabbitmq_event_bus_exchange,
+        exchange: Outboxable.configuration.rabbitmq_exchange_name,
         payload: as_json
       )
     end

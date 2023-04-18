@@ -17,7 +17,7 @@ module Outboxable
                   :rabbitmq_user,
                   :rabbitmq_password,
                   :rabbitmq_vhost,
-                  :rabbitmq_event_bus_exchange,
+                  :rabbitmq_exchange_name,
                   :message_broker,
                   :orm
 
