@@ -14,7 +14,7 @@ module Outboxable
 
     # Copy initializer into user app
     def copy_initializer
-      copy_file('activerecod_initializer.rb', 'config/initializers/z_outboxable.rb') if @orm == 'activerecord'
+      copy_file('activerecord_initializer.rb', 'config/initializers/z_outboxable.rb') if @orm == 'activerecord'
       copy_file('mongoid_initializer.rb', 'config/initializers/z_outboxable.rb') if @orm == 'mongoid'
     end
 

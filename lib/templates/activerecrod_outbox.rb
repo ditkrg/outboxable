@@ -4,7 +4,7 @@ class Outbox < ApplicationRecord
   before_save :check_publishing
   # Callbacks
   before_create :set_last_attempted_at
-  after_save :publish, if: :allow_publish
+  after_commit :publish, if: :allow_publish?
   # Enums
   enum status: { pending: 0, processing: 1, published: 2, failed: 3 }
   enum size: { single: 0, batch: 1 }
@@ -20,8 +20,12 @@ class Outbox < ApplicationRecord
   end
 
   def publish
-    Outboxable::Worker.perform_async(id)
-    update(status: :processing, last_attempted_at: 1.minute.from_now, allow_publish: false)
+    # Run this in own thread
+    threaded = Thread.new do
+      Outboxable::Worker.perform_inline(id)
+      update(status: :processing, last_attempted_at: 1.minute.from_now, allow_publish: false)
+    end
+    threaded.join
   end
 
   def check_publishing
