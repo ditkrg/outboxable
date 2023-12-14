@@ -32,5 +32,5 @@ Outboxable.configure do |config|
   config.rabbitmq_user = ENV.fetch('RABBITMQ__USERNAME')
   config.rabbitmq_password = ENV.fetch('RABBITMQ__PASSWORD')
   config.rabbitmq_vhost = ENV.fetch('RABBITMQ__VHOST')
-  config.rabbitmq_event_bus_exchange = ENV.fetch('EVENTBUS__EXCHANGE_NAME')
+  config.rabbitmq_exchange_name = ENV.fetch('RABBITMQ__EXCHANGE_NAME')
 end
