@@ -21,5 +21,7 @@ class CreateOutboxableOutboxes < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+
+    add_index :outboxes, %i[status last_attempted_at], name: 'index_outboxes_on_outboxable_status_and_last_attempted_at'
   end
 end
