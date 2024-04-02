@@ -5,8 +5,8 @@ module Outboxable
     source_root File.expand_path('../../templates', __dir__)
     class_option :orm, type: :string, default: 'activerecord'
 
-    def initialize
-      super
+    def initialize(*args)
+      super(*args)
 
       @orm = options[:orm] || 'activerecord'
       %w[activerecord mongoid].include?(@orm) || raise(ArgumentError, 'Invalid ORM. Only ActiveRecord and Mongoid are supported.')
