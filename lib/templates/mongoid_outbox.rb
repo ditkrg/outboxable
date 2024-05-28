@@ -10,6 +10,7 @@ class Outbox
 
   field :exchange, type: String, default: ''
   field :routing_key, type: String, default: ''
+  field :content_type, type: String, default: 'application/json'
 
   field :attempts, type: Integer, default: 0
 

@@ -7,6 +7,7 @@ class CreateOutboxableOutboxes < ActiveRecord::Migration[7.0]
 
       t.string :exchange, null: false, default: ''
       t.string :routing_key, null: false, default: ''
+      t.string :content_type, null: false, default: 'application/json'
 
       t.integer  :attempts, null: false, default: 0
       t.datetime :last_attempted_at, null: true
