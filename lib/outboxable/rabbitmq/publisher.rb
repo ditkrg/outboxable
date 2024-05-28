@@ -19,18 +19,12 @@ module Outboxable
           # Declare a exchange
           exchange = channel.topic(@resource.exchange, durable: true)
 
-          content_type = if @resource.respond_to?(:content_type) && @resource.content_type.present?
-                           @resource.content_type
-                         else
-                           'application/json'
-                         end
-
           # Publish the CloudEvent resource to the exchange
           exchange.publish(
             to_envelope(resource: @resource),
             routing_key: @resource.routing_key,
             headers: @resource.try(:headers) || {},
-            content_type:
+            content_type: @resource.try(:content_type) || 'application/json'
           )
 
           # Wait for confirmation
