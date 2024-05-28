@@ -20,7 +20,12 @@ module Outboxable
           exchange = channel.topic(@resource.exchange, durable: true)
 
           # Publish the CloudEvent resource to the exchange
-          exchange.publish(to_envelope(resource: @resource), routing_key: @resource.routing_key, headers: @resource.try(:headers) || {})
+          exchange.publish(
+            to_envelope(resource: @resource),
+            routing_key: @resource.routing_key,
+            headers: @resource.try(:headers) || {},
+            content_type: @resource.try(:content_type) || 'application/json'
+          )
 
           # Wait for confirmation
           confirmed = channel.wait_for_confirms
