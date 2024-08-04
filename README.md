@@ -1,3 +1,16 @@
+# 🚨 Discontinuation Notice for ActiveRecord 🚨
+
+**Effective Date: August 4, 2024**
+
+Please be aware that we are no longer maintaing the part related to **ActiveRecord** in this gem. We are dropping support for ActiveRecord in favor of [Solid Queue](https://github.com/rails/solid_queue). 
+
+In the meantime, we commit to continously support the Mongoid part of the gem.
+
+### New Recommended Gem: `Solid Queue`
+
+For ActiveRecord users, we recommend transitioning to the `Solid Queue` gem, which provides enhanced functionality, improved performance, and better support for modern application requirements. `Solid Queue` is designed to seamlessly integrate with your existing infrastructure while offering robust features to handle your queuing needs efficiently.
+
+
 # Outboxable
 
 The Outboxable Gem is tailored for Rails applications to implement the transactional outbox pattern. It supports both ActiveRecord and Mongoid.
