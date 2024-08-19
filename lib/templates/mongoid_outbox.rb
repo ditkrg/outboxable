@@ -22,6 +22,7 @@ class Outbox
 
   field :payload, type: Hash, default: {}
   field :headers, type: Hash, default: {}
+  field :metadata, type: Hash, default: {}
 
   index({ idempotency_key: 1 }, { unique: true, name: 'idempotency_key_unique_index' })
 
