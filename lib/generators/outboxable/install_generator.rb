@@ -6,7 +6,7 @@ module Outboxable
     class_option :orm, type: :string, default: 'activerecord'
 
     def initialize(*args)
-      super(*args)
+      super(*args) # rubocop:disable Style/SuperArguments
 
       @orm = options[:orm] || 'activerecord'
       %w[activerecord mongoid].include?(@orm) || raise(ArgumentError, 'Invalid ORM. Only ActiveRecord and Mongoid are supported.')

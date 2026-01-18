@@ -29,10 +29,10 @@ module Outboxable
         exchange: Outboxable.configuration.rabbitmq_exchange_name,
         payload: as_json,
         metadata: if respond_to?(:metadata_for_outbox)
-                metadata_for_outbox
-              else
-                {}
-              end
+                    metadata_for_outbox
+                  else
+                    {}
+                  end
       )
     end
 
