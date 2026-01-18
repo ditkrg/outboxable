@@ -15,7 +15,6 @@ class CreateOutboxableOutboxes < ActiveRecord::Migration[7.0]
 
       t.jsonb :payload, default: {}
       t.jsonb :headers, default: {}
-      t.jsonb :metadata, default: {}, null: true
 
       t.integer :size, null: false, default: 0
 
