@@ -3,6 +3,7 @@ require 'singleton'
 module Outboxable
   class Connection
     include ::Singleton
+
     attr_reader :connection
 
     def initialize
